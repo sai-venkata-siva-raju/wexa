@@ -1,0 +1,31 @@
+{
+  "name": "job-market-graph",
+  "version": "1.0.0",
+  "description": "Graph database application for job market analysis",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "nodemon backend/server.js",
+    "load-data": "node scripts/loadData.js",
+    "build": "cd frontend && npm run build",
+    "install-all": "npm install && cd frontend && npm install"
+  },
+  "keywords": [
+    "graph",
+    "cognodb",
+    "job-market",
+    "cypher"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "neo4j-driver": "^5.14.0",
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
