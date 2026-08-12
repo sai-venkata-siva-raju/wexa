@@ -367,15 +367,41 @@ npm run build
 
 ## Deployment Notes
 
-You can deploy the backend and frontend separately.
+Netlify is a great fit for the React frontend, but the Express backend should be hosted separately.
 
 Suggested setup:
 
-- **Backend**: Render, Railway, Heroku, or similar Node.js host
-- **Frontend**: Vercel, Netlify, or similar static host
+- **Backend**: Render, Railway, Heroku, Fly.io, or similar Node.js host
+- **Frontend**: Netlify
 - **Database**: CognoDB cloud instance
 
-Remember to set production environment variables on both platforms.
+### Deploy the frontend to Netlify
+
+1. Push the repository to GitHub.
+2. In Netlify, choose **Add new site** and connect your GitHub repo.
+3. Use the provided `netlify.toml` configuration.
+4. Set the build settings:
+   - Base directory: `frontend`
+   - Build command: `npm run build`
+   - Publish directory: `build`
+5. Add this environment variable in Netlify site settings:
+   - `REACT_APP_API_URL=https://your-backend-domain.com`
+6. Deploy the site.
+
+### Deploy the backend separately
+
+The backend is an Express server and should run on a separate Node.js host.
+
+1. Deploy the `backend/server.js` app to a Node.js platform such as Render or Railway.
+2. Set the same CognoDB environment variables there:
+   - `COGNODB_URI`
+   - `COGNODB_USERNAME`
+   - `COGNODB_PASSWORD`
+3. Make sure the backend URL you deploy is the one used in `REACT_APP_API_URL` on Netlify.
+
+### Optional SPA routing note
+
+The included Netlify redirect rule sends all client-side routes to `index.html`, which keeps React navigation working if you add routing later.
 
 ## License
 
